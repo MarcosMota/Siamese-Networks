@@ -1,0 +1,210 @@
+[
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "backend",
+        "importPath": "tensorflow.keras",
+        "description": "tensorflow.keras",
+        "isExtraImport": true,
+        "detail": "tensorflow.keras",
+        "documentation": {}
+    },
+    {
+        "label": "backend",
+        "importPath": "tensorflow.keras",
+        "description": "tensorflow.keras",
+        "isExtraImport": true,
+        "detail": "tensorflow.keras",
+        "documentation": {}
+    },
+    {
+        "label": "Input",
+        "importPath": "tensorflow.keras.layers",
+        "description": "tensorflow.keras.layers",
+        "isExtraImport": true,
+        "detail": "tensorflow.keras.layers",
+        "documentation": {}
+    },
+    {
+        "label": "Flatten",
+        "importPath": "tensorflow.keras.layers",
+        "description": "tensorflow.keras.layers",
+        "isExtraImport": true,
+        "detail": "tensorflow.keras.layers",
+        "documentation": {}
+    },
+    {
+        "label": "Dense",
+        "importPath": "tensorflow.keras.layers",
+        "description": "tensorflow.keras.layers",
+        "isExtraImport": true,
+        "detail": "tensorflow.keras.layers",
+        "documentation": {}
+    },
+    {
+        "label": "Dropout",
+        "importPath": "tensorflow.keras.layers",
+        "description": "tensorflow.keras.layers",
+        "isExtraImport": true,
+        "detail": "tensorflow.keras.layers",
+        "documentation": {}
+    },
+    {
+        "label": "Lambda",
+        "importPath": "tensorflow.keras.layers",
+        "description": "tensorflow.keras.layers",
+        "isExtraImport": true,
+        "detail": "tensorflow.keras.layers",
+        "documentation": {}
+    },
+    {
+        "label": "Model",
+        "importPath": "tensorflow.keras.models",
+        "description": "tensorflow.keras.models",
+        "isExtraImport": true,
+        "detail": "tensorflow.keras.models",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "importPath": "glob",
+        "description": "glob",
+        "isExtraImport": true,
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "basename",
+        "importPath": "os.path",
+        "description": "os.path",
+        "isExtraImport": true,
+        "detail": "os.path",
+        "documentation": {}
+    },
+    {
+        "label": "splitext",
+        "importPath": "os.path",
+        "description": "os.path",
+        "isExtraImport": true,
+        "detail": "os.path",
+        "documentation": {}
+    },
+    {
+        "label": "find_packages",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "contrastive_loss_with_margin",
+        "kind": 2,
+        "importPath": "src.siamese_network.loss",
+        "description": "src.siamese_network.loss",
+        "peekOfCode": "def contrastive_loss_with_margin(margin: int):\n    def contrastive_loss(y_true, y_pred):\n        square_pred = K.square(y_pred)\n        margin_square = K.square(K.maximum(margin - y_pred, 0))\n        return K.mean(y_true * square_pred + (1 - y_true) * margin_square)\n    return contrastive_loss",
+        "detail": "src.siamese_network.loss",
+        "documentation": {}
+    },
+    {
+        "label": "euclidean_distance",
+        "kind": 2,
+        "importPath": "src.siamese_network.model",
+        "description": "src.siamese_network.model",
+        "peekOfCode": "def euclidean_distance(vects):\n    x, y = vects\n    sum_square = K.sum(K.square(x - y), axis=1, keepdims=True)\n    return K.sqrt(K.maximum(sum_square, K.epsilon()))\ndef eucl_dist_output_shape(shapes):\n    shape1, shape2 = shapes\n    return (shape1[0], 1)\ndef initialize_base_network(shape: Tuple[int,int,int]) -> Model:\n    input = Input(shape=shape, name=\"base_input\")\n    x = Flatten(name=\"flatten_input\")(input)",
+        "detail": "src.siamese_network.model",
+        "documentation": {}
+    },
+    {
+        "label": "eucl_dist_output_shape",
+        "kind": 2,
+        "importPath": "src.siamese_network.model",
+        "description": "src.siamese_network.model",
+        "peekOfCode": "def eucl_dist_output_shape(shapes):\n    shape1, shape2 = shapes\n    return (shape1[0], 1)\ndef initialize_base_network(shape: Tuple[int,int,int]) -> Model:\n    input = Input(shape=shape, name=\"base_input\")\n    x = Flatten(name=\"flatten_input\")(input)\n    x = Dense(128, activation='relu', name=\"first_base_dense\")(x)\n    x = Dropout(0.1, name=\"first_dropout\")(x)\n    x = Dense(128, activation='relu', name=\"second_base_dense\")(x)\n    x = Dropout(0.1, name=\"second_dropout\")(x)",
+        "detail": "src.siamese_network.model",
+        "documentation": {}
+    },
+    {
+        "label": "initialize_base_network",
+        "kind": 2,
+        "importPath": "src.siamese_network.model",
+        "description": "src.siamese_network.model",
+        "peekOfCode": "def initialize_base_network(shape: Tuple[int,int,int]) -> Model:\n    input = Input(shape=shape, name=\"base_input\")\n    x = Flatten(name=\"flatten_input\")(input)\n    x = Dense(128, activation='relu', name=\"first_base_dense\")(x)\n    x = Dropout(0.1, name=\"first_dropout\")(x)\n    x = Dense(128, activation='relu', name=\"second_base_dense\")(x)\n    x = Dropout(0.1, name=\"second_dropout\")(x)\n    x = Dense(128, activation='relu', name=\"third_base_dense\")(x)\n    return Model(inputs=input, outputs=x)\ndef build_model(shape: Tuple[int,int,int]) -> Model:",
+        "detail": "src.siamese_network.model",
+        "documentation": {}
+    },
+    {
+        "label": "build_model",
+        "kind": 2,
+        "importPath": "src.siamese_network.model",
+        "description": "src.siamese_network.model",
+        "peekOfCode": "def build_model(shape: Tuple[int,int,int]) -> Model:\n    base_network = initialize_base_network()\n    input_a = Input(shape=shape, name=\"left_input\")\n    vect_output_a = base_network(input_a)\n    input_b = Input(shape=shape, name=\"right_input\")\n    vect_output_b = base_network(input_b)\n    output = Lambda(euclidean_distance, name=\"output_layer\", output_shape=eucl_dist_output_shape)([vect_output_a, vect_output_b])\n    return Model([input_a, input_b], output)",
+        "detail": "src.siamese_network.model",
+        "documentation": {}
+    },
+    {
+        "label": "create_pairs_on_set",
+        "kind": 2,
+        "importPath": "src.siamese_network.preprocess",
+        "description": "src.siamese_network.preprocess",
+        "peekOfCode": "def create_pairs_on_set(images: np.ndarray, labels: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:\n    \"\"\" create a pair of labeled images\n    Args:\n        images (np.ndarray): Array of images\n        labels (np.ndarray): [Array of Labels\n    Returns:\n        Tuple[np.ndarray, np.ndarray]: pair of images and label\n    \"\"\"\n    def create_pairs(x, digit_indices) -> Tuple[np.ndarray, np.ndarray]:\n        '''",
+        "detail": "src.siamese_network.preprocess",
+        "documentation": {}
+    }
+]
